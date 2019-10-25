@@ -23,15 +23,15 @@
 		// }
 		// loadDoc();
 
-		// var nome = {
-		// 	"nome": "Pablo",
-		// 	"sexo": "Masculino"
-		// }
+		var nome = {
+			"nome": "Pablo",
+			"sexo": "Masculino"
+		}
 
 		function loadDoc() {
 			$.ajax({
 				type: "GET",
-				url: "https://pablolfbs.github.io/foo.json",
+				url: "https://pablolfbs.github.io",
 				dataType: "JSON",
 				success: function (response) {
 					var texto = response;
