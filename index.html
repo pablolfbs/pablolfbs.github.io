@@ -1,22 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 	<title>Te</title>
 </head>
+
 <body>
 	<script type="text/javascript">
-		function loadDoc() {
-		    var xhttp = new XMLHttpRequest();
-		    xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-			    var texto = JSON.parse(this.responseText);
-			    console.log(texto.nome.toUpperCase() + " - " + texto.sexo.toUpperCase());
-		       }
-		    };
-		    xhttp.open("GET", "https://pablolfbs.github.io/foo.json", true);
-		    xhttp.send(); 
-		}
-		loadDoc();
+
+		// function loadDoc() {
+		//     var xhttp = new XMLHttpRequest();
+		//     xhttp.onreadystatechange = function() {
+		// 	if (this.readyState == 4 && this.status == 200) {
+		// 	    var texto = JSON.parse(this.responseText);
+		// 	    console.log(texto.nome.toUpperCase() + " - " + texto.sexo.toUpperCase());
+		//        }
+		//     };
+		//     xhttp.open("GET", "https://pablolfbs.github.io/foo.json", true);
+		//     xhttp.send(); 
+		// }
+		// loadDoc();
+
+			function loadDoc() {
+				$.ajax({
+					type: "GET",
+					url: "https://pablolfbs.github.io/foo.json",
+					dataType: "dataType",
+					success: function (response) {
+						var texto = response;
+						console.log(texto);
+			    		console.log(texto.nome.toUpperCase() + " - " + texto.sexo.toUpperCase());
+					}
+				});
+			}
 	</script>
 </body>
+
 </html>
