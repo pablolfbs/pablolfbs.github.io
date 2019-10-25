@@ -31,6 +31,9 @@
 					var texto = response;
 					console.log(texto);
 					console.log(texto.nome.toUpperCase() + " - " + texto.sexo.toUpperCase());
+				},
+				error: function(request, status, error) {
+					alert(request.responseText);
 				}
 			});
 		}
