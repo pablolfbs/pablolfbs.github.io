@@ -22,18 +22,20 @@
 		// }
 		// loadDoc();
 
-			function loadDoc() {
-				$.ajax({
-					type: "GET",
-					url: "https://pablolfbs.github.io/foo.json",
-					dataType: "dataType",
-					success: function (response) {
-						var texto = response;
-						console.log(texto);
-			    		console.log(texto.nome.toUpperCase() + " - " + texto.sexo.toUpperCase());
-					}
-				});
-			}
+		function loadDoc() {
+			$.ajax({
+				type: "GET",
+				url: "https://pablolfbs.github.io/foo.json",
+				dataType: "dataType",
+				success: function (response) {
+					var texto = response;
+					console.log(texto);
+					console.log(texto.nome.toUpperCase() + " - " + texto.sexo.toUpperCase());
+				}
+			});
+		}
+
+		loadDoc();
 	</script>
 </body>
 
