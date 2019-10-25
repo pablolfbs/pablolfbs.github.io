@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
 		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -22,17 +23,22 @@
 		// }
 		// loadDoc();
 
+		// var nome = {
+		// 	"nome": "Pablo",
+		// 	"sexo": "Masculino"
+		// }
+
 		function loadDoc() {
 			$.ajax({
 				type: "GET",
 				url: "https://pablolfbs.github.io/foo.json",
-				dataType: "dataType",
+				dataType: "JSON",
 				success: function (response) {
 					var texto = response;
 					console.log(texto);
 					console.log(texto.nome.toUpperCase() + " - " + texto.sexo.toUpperCase());
 				},
-				error: function(request, status, error) {
+				error: function (request, status, error) {
 					console.log(request.responseText);
 				}
 			});
