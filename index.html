@@ -38,11 +38,12 @@
 				url: "https://pablolfbs.github.io/json/foo.json",
 				dataType: "JSON",
 				success: function (response) {
+					console.log(response);
 					$('body').text(JSON.stringify(response));
 
 					var texto = response;
 					console.log(texto);
-					console.log(texto.nome.toUpperCase() + " - " + texto.sexo.toUpperCase());
+					console.log(texto.nome.toUpperCase() + " - " + texto.sexo.toUpperCase() + " - " + texto.idade);
 
 				},
 				error: function (request, status, error) {
