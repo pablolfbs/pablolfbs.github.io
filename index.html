@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
 		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-	<title>TesteAjax</title>
 </head>
 
 <body>
@@ -18,33 +21,35 @@
 		// 	    console.log(texto.nome.toUpperCase() + " - " + texto.sexo.toUpperCase());
 		//        }
 		//     };
-		//     xhttp.open("GET", "https://pablolfbs.github.io/foo.json", true);
+		//     xhttp.open("GET", "https://pablolfbs.github.io/json/foo.json", true);
 		//     xhttp.send(); 
 		// }
 		// loadDoc();
-
-		function loadDoc() {
-			$.ajax({
-				type: "GET",
-				url: "https://pablolfbs.github.io/foo.json",
-				dataType: "JSON",
-				success: function (response) {
-					console.log(response);
-					var texto = response;
-					console.log(texto);
-					console.log(texto.nome.toUpperCase() + " - " + texto.sexo.toUpperCase());
-				},
-				error: function (request, status, error) {
-					console.log(request.responseText);
-				}
-			});
-		}
 
 		$(function () {
 
 			loadDoc();
 
 		});
+
+		function loadDoc() {
+			$.ajax({
+				type: "GET",
+				url: "https://pablolfbs.github.io/json/foo.json",
+				dataType: "JSON",
+				success: function (response) {
+					$('body').text(JSON.stringify(response));
+
+					var texto = response;
+					console.log(texto);
+					console.log(texto.nome.toUpperCase() + " - " + texto.sexo.toUpperCase());
+
+				},
+				error: function (request, status, error) {
+					console.log(request.responseText);
+				}
+			});
+		}
 
 	</script>
 </body>
