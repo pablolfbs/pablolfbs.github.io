@@ -13,37 +13,39 @@
 <body>
 	<script type="text/javascript">
 
-		// function loadDoc() {
-		//     var xhttp = new XMLHttpRequest();
-		//     xhttp.onreadystatechange = function() {
-		// 	if (this.readyState == 4 && this.status == 200) {
-		// 	    var texto = JSON.parse(this.responseText);
-		// 	    console.log(texto.nome.toUpperCase() + " - " + texto.sexo.toUpperCase());
-		//        }
-		//     };
-		//     xhttp.open("GET", "https://pablolfbs.github.io/json/foo.json", true);
-		//     xhttp.send(); 
-		// }
-		// loadDoc();
-
 		$(function () {
 
-			loadDoc();
+			// loadDocJSVanilla();
+			loadDocJQuery();
 
 		});
 
-		function loadDoc() {
+		function loadDocJSVanilla() {
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function () {
+				if (this.readyState == 4 && this.status == 200) {
+					document.querySelector('body').innerHTML = this.responseText;
+
+					console.log(JSON.parse(this.responseText));
+
+					var texto = JSON.parse(this.responseText);
+					console.log(texto.nome.toUpperCase() + " - " + texto.sexo.toUpperCase() + ' - ' + texto.idade);
+				}
+			};
+			xhttp.open("GET", "https://pablolfbs.github.io/json/foo.json", true);
+			xhttp.send();
+		}
+
+		function loadDocJQuery() {
 			$.ajax({
 				type: "GET",
 				url: "https://pablolfbs.github.io/json/foo.json",
 				dataType: "JSON",
 				success: function (response) {
-					console.log(response);
 					$('body').text(JSON.stringify(response));
 
-					var texto = response;
-					console.log(texto);
-					console.log(texto.nome.toUpperCase() + " - " + texto.sexo.toUpperCase() + " - " + texto.idade);
+					console.log(response);
+					console.log(response.nome.toUpperCase() + " - " + response.sexo.toUpperCase() + ' - ' + response.idade);
 
 				},
 				error: function (request, status, error) {
