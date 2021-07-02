@@ -2,59 +2,56 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 </head>
 
 <body>
-	<script type="text/javascript">
+    <script type="text/javascript">
+        $(function() {
 
-		$(function () {
+            loadDocJSVanilla();
+            // loadDocJQuery();
 
-			// loadDocJSVanilla();
-			loadDocJQuery();
+        });
 
-		});
+        function loadDocJSVanilla() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.querySelector('body').innerHTML = this.responseText;
 
-		function loadDocJSVanilla() {
-			var xhttp = new XMLHttpRequest();
-			xhttp.onreadystatechange = function () {
-				if (this.readyState == 4 && this.status == 200) {
-					document.querySelector('body').innerHTML = this.responseText;
+                    console.log(JSON.parse(this.responseText));
 
-					console.log(JSON.parse(this.responseText));
+                    var texto = JSON.parse(this.responseText);
+                    console.log(texto.nome.toUpperCase() + " - " + texto.sexo.toUpperCase() + ' - ' + texto.idade);
+                }
+            };
+            xhttp.open("GET", "https://pablolfbs.github.io/json/foo.json", true);
+            xhttp.send();
+        }
 
-					var texto = JSON.parse(this.responseText);
-					console.log(texto.nome.toUpperCase() + " - " + texto.sexo.toUpperCase() + ' - ' + texto.idade);
-				}
-			};
-			xhttp.open("GET", "https://pablolfbs.github.io/json/foo.json", true);
-			xhttp.send();
-		}
+        function loadDocJQuery() {
+            $.ajax({
+                type: "GET",
+                url: "https://pablolfbs.github.io/json/foo.json",
+                dataType: "JSON",
+                success: function(response) {
+                    $('body').text(JSON.stringify(response));
 
-		function loadDocJQuery() {
-			$.ajax({
-				type: "GET",
-				url: "https://pablolfbs.github.io/json/foo.json",
-				dataType: "JSON",
-				success: function (response) {
-					$('body').text(JSON.stringify(response));
+                    console.log(response);
+                    console.log(response.nome.toUpperCase() + " - " + response.sexo.toUpperCase() + ' - ' + response.idade);
 
-					console.log(response);
-					console.log(response.nome.toUpperCase() + " - " + response.sexo.toUpperCase() + ' - ' + response.idade);
-
-				},
-				error: function (request, status, error) {
-					console.log(request.responseText);
-				}
-			});
-		}
-
-	</script>
+                },
+                error: function(request, status, error) {
+                    console.log(request.responseText);
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
