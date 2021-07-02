@@ -1,0 +1,23 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center">Conversor de Temperatura</h1>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-1">
+            <p>Celsius</p>
+        </div>
+        <div class="col-11">
+            <input type="number" class="form-control" [(ngModel)]="celsius" (ngModelChange)="celsiusToFahrenheit()">
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-1">
+            <p>Fahrenheit</p>
+        </div>
+        <div class="col-11">
+            <input type="number" class="form-control" [(ngModel)]="fahrenheit" (ngModelChange)="fahrenheitToCelsius()">
+        </div>
+    </div>
+</div>
