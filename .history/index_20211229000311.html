@@ -32,7 +32,7 @@
                 <div class="mb-3">
                     <input type="text" class="form-control montante" aria-describedby="" placeholder="Valor final" disabled>
                 </div>
-                <button type="button" class="btn btn-secondary" style="float: right" aria-label="">Submit</button>
+                <button type="button" class="btn btn-secondary float-right botao">Submit</button>
             </div>
             <div class="col-3"></div>
         </div>
@@ -53,8 +53,7 @@
                 montante += investimentoMensal * Math.pow((1 + tx), i)
             }
 
-            if (montante)
-                document.querySelector(".montante").value = montante.toFixed(2)
+            document.querySelector(".montante").value = montante.toFixed(2)
         }
 
         document.querySelector('button').onclick = calculoInvestimento

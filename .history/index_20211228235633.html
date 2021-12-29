@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-3"></div>
             <div class="col-6">
-                <h1 class="text-center mb-5">Calculadora Financeira</h1>
+                <h1 class="text-center mb-4">Calculadora Financeira</h1>
                 <div class="mb-3">
                     <input type="text" class="form-control investimentoInicial" aria-describedby="" placeholder="Investimento Inicial">
                 </div>
@@ -32,7 +32,7 @@
                 <div class="mb-3">
                     <input type="text" class="form-control montante" aria-describedby="" placeholder="Valor final" disabled>
                 </div>
-                <button type="button" class="btn btn-secondary" style="float: right" aria-label="">Submit</button>
+                <button type="button" class="btn btn-primary botao">Submit</button>
             </div>
             <div class="col-3"></div>
         </div>
@@ -53,8 +53,7 @@
                 montante += investimentoMensal * Math.pow((1 + tx), i)
             }
 
-            if (montante)
-                document.querySelector(".montante").value = montante.toFixed(2)
+            document.querySelector(".montante").value = montante.toFixed(2)
         }
 
         document.querySelector('button').onclick = calculoInvestimento
