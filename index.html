@@ -43,8 +43,8 @@
         const calculoInvestimento = () => {
             // M = C (1+i)^t
 
-            let investimentoMensal = parseFloat(document.querySelector(".investimentoMensal").value)
-            const investimentoInicial = parseFloat(document.querySelector(".investimentoInicial").value)
+            let investimentoMensal = parseFloat(document.querySelector(".investimentoMensal").value) > 0 ? parseFloat(document.querySelector(".investimentoMensal").value) : 0
+            const investimentoInicial = parseFloat(document.querySelector(".investimentoInicial").value) > 0 ? parseFloat(document.querySelector(".investimentoInicial").value) : 0
             const periodo = parseInt(document.querySelector(".periodo").value)
             const tx = parseFloat(document.querySelector(".tx").value / 100)
             let montante = investimentoInicial * Math.pow((1 + tx), periodo)
