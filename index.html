@@ -12,19 +12,7 @@
     <link rel="icon" type="image/png" href="https://img.icons8.com/color/48/000000/apple-calculator.png" />
     <title>Calculadora Financeira</title>
 
-    <style>
-        body {
-            background-color: #3e4444;
-        }
-        
-        .cor-fundo {
-            background-color: lightgray;
-        }
-        
-        .aDireita {
-            text-align: right;
-        }
-    </style>
+    <link rel="stylesheet" href="style/style.css">
 </head>
 
 <body>
@@ -45,68 +33,49 @@
                 <div class="mb-3">
                     <input type="text" class="form-control periodo cor-fundo" aria-describedby="" placeholder="Quantidade meses">
                 </div>
-                <div class="mb-3">
-                    <input type="text" class="form-control valor-investido cor-fundo" aria-describedby="" placeholder="Valor investido (R$)" disabled>
+
+                <div class="row" hidden>
+                    <div class="col-6">
+                        <label class="text-light">Valor investido (R$)</label>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <span class="text-light" id="valor-investido"></span>
+                        </div>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <input type="text" class="form-control rendimento cor-fundo" aria-describedby="" placeholder="Rendimento (R$)" disabled>
+                <div class="row" hidden>
+                    <div class="col-6">
+                        <label class="text-light">Rendimento (R$)</label>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <span class="text-light" id="rendimento"></span>
+                        </div>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <input type="text" class="form-control montante cor-fundo" aria-describedby="" placeholder="Valor final (R$)" disabled>
+                <div class="row" hidden>
+                    <div class="col-6">
+                        <label class="text-light">Valor total (R$)</label>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <span class="text-light" id="montante"></span>
+                        </div>
+                    </div>
                 </div>
                 <div class="d-grid gap-2 mb-3">
                     <button type="button" class="btn btn-secondary" aria-label="">Calcular</button>
                 </div>
                 <div class="aDireita">
-                    <button type="button" id="limpar" class="btn btn-link btn-sm" aria-label="">Limpar Campos</button>
+                    <button type="button" id="limpar" class="btn btn-link btn-sm text-light" aria-label="">Limpar Campos</button>
                 </div>
             </div>
             <div class="col-3"></div>
         </div>
     </form>
 
-
-    <script>
-        const calculoInvestimento = () => {
-            // M = C (1+i)^t
-
-            const investimentoMensal = parseFloat(document.querySelector(".investimento-mensal").value) > 0 ? parseFloat(document.querySelector(".investimento-mensal").value) : 0
-            const investimentoInicial = parseFloat(document.querySelector(".investimento-inicial").value) > 0 ? parseFloat(document.querySelector(".investimento-inicial").value) : 0
-            const periodo = parseInt(document.querySelector(".periodo").value)
-            const tx = parseFloat(document.querySelector(".tx").value / 100)
-            let montante = investimentoInicial * Math.pow((1 + tx), periodo)
-
-            for (let i = 0; i < periodo; i++) {
-                montante += investimentoMensal * Math.pow((1 + tx), i)
-            }
-
-            const valorInvestido = investimentoMensal * periodo + investimentoInicial
-            const rendimento = montante - valorInvestido
-
-            if (montante) {
-                document.querySelector(".valor-investido").value = moedaFormatada(valorInvestido)
-                document.querySelector(".rendimento").value = moedaFormatada(rendimento)
-                document.querySelector(".montante").value = moedaFormatada(montante)
-            }
-        }
-
-        document.querySelector('button').onclick = calculoInvestimento
-
-        const moedaFormatada = valor => parseFloat(valor).toLocaleString("pt-br", {
-            style: "currency",
-            currency: "BRL"
-        })
-
-        const itens = document.querySelectorAll("input");
-
-        for (const item of itens)
-            item.addEventListener('input', e => e.currentTarget.value = e.currentTarget.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1'))
-
-        document.querySelector("#limpar").addEventListener('click', () => {
-            for (const item of itens)
-                item.value = ''
-        })
-    </script>
+    <script src="js/script.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
