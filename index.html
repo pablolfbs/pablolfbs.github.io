@@ -77,11 +77,16 @@
             const rendimento = montante - valorInvestido
 
             if (montante) {
-                document.querySelector(".valor-investido").value = 'R$ ' + valorInvestido.toFixed(2).replace('.', ',')
-                document.querySelector(".rendimento").value = 'R$ ' + rendimento.toFixed(2).replace('.', ',')
-                document.querySelector(".montante").value = 'R$ ' + montante.toFixed(2).replace('.', ',')
+                document.querySelector(".valor-investido").value = moedaFormatada(valorInvestido)
+                document.querySelector(".rendimento").value = moedaFormatada(rendimento)
+                document.querySelector(".montante").value = moedaFormatada(montante)
             }
         }
+
+        const moedaFormatada = valor => parseFloat(valor).toLocaleString("pt-br", {
+            style: "currency",
+            currency: "BRL"
+        })
 
         const itens = document.querySelectorAll("input");
 
