@@ -58,7 +58,7 @@
                     <button type="button" class="btn btn-secondary" aria-label="">Calcular</button>
                 </div>
                 <div class="aDireita">
-                    <button type="button" id="limpar" class="btn btn-link btn-sm" aria-label="">Limpar Campos</button>
+                    <button type="button" id="limpar" class="btn btn-danger" aria-label="">Limpar</button>
                 </div>
             </div>
             <div class="col-3"></div>
@@ -90,8 +90,6 @@
             }
         }
 
-        document.querySelector('button').onclick = calculoInvestimento
-
         const moedaFormatada = valor => parseFloat(valor).toLocaleString("pt-br", {
             style: "currency",
             currency: "BRL"
@@ -102,10 +100,12 @@
         for (const item of itens)
             item.addEventListener('input', e => e.currentTarget.value = e.currentTarget.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1'))
 
-        document.querySelector("#limpar").addEventListener('click', () => {
+        document.querySelector('button').onclick = calculoInvestimento
+
+        const limpaCampos = () => {
             for (const item of itens)
-                item.value = ''
-        })
+                item.addEventListener('click', e => e.currentTarget.value = '')
+        }
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>

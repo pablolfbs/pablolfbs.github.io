@@ -92,15 +92,15 @@
 
         document.querySelector('button').onclick = calculoInvestimento
 
-        const moedaFormatada = valor => parseFloat(valor).toLocaleString("pt-br", {
-            style: "currency",
-            currency: "BRL"
-        })
-
         const itens = document.querySelectorAll("input");
 
         for (const item of itens)
             item.addEventListener('input', e => e.currentTarget.value = e.currentTarget.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1'))
+
+        const moedaFormatada = valor => parseFloat(valor).toLocaleString("pt-br", {
+            style: "currency",
+            currency: "BRL"
+        })
 
         document.querySelector("#limpar").addEventListener('click', () => {
             for (const item of itens)
