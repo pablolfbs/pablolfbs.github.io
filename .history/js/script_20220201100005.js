@@ -1,5 +1,5 @@
-const itensInput = document.querySelectorAll("input")
-const itensHidden = document.querySelectorAll("div[hidden]")
+const itensInput = document.querySelectorAll("input");
+const itensHidden = document.querySelectorAll("div[hidden]");
 
 const calculoInvestimento = () => {
     // M = C (1+i)^t
@@ -40,7 +40,7 @@ for (const item of itensInput) {
 }
 
 document.querySelector("#limpar").addEventListener("click", () => {
-    for (const item of itensInput) item.value = ""
+    for (const item of itensInput) item.value = "";
     document.querySelector('#container-resultado').setAttribute('hidden', true)
 })
 

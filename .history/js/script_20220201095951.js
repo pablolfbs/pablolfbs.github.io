@@ -1,5 +1,5 @@
-const itensInput = document.querySelectorAll("input")
-const itensHidden = document.querySelectorAll("div[hidden]")
+const itensInput = document.querySelectorAll("input");
+const itensHidden = document.querySelectorAll("div[hidden]");
 
 const calculoInvestimento = () => {
     // M = C (1+i)^t
@@ -23,9 +23,9 @@ const calculoInvestimento = () => {
     const rendimento = montante - valorInvestido
 
     if (montante) {
-        document.querySelector("#valor-investido").innerHTML = moedaFormatada(valorInvestido)
-        document.querySelector("#rendimento").innerHTML = moedaFormatada(rendimento)
-        document.querySelector("#montante").innerHTML = moedaFormatada(montante)
+        document.querySelector("#valor-investido").innerHTML = moedaFormatada(valorInvestido);
+        document.querySelector("#rendimento").innerHTML = moedaFormatada(rendimento);
+        document.querySelector("#montante").innerHTML = moedaFormatada(montante);
 
         for (const item of itensHidden) item.removeAttribute("hidden")
     }
@@ -40,7 +40,7 @@ for (const item of itensInput) {
 }
 
 document.querySelector("#limpar").addEventListener("click", () => {
-    for (const item of itensInput) item.value = ""
+    for (const item of itensInput) item.value = "";
     document.querySelector('#container-resultado').setAttribute('hidden', true)
 })
 
