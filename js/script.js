@@ -50,4 +50,5 @@ for (const item of itensInput) {
 
 document.querySelector("#limpar").addEventListener("click", () => {
     for (const item of itensInput) item.value = "";
+    document.querySelector('#container-resultado').setAttribute('hidden', true)
 });
