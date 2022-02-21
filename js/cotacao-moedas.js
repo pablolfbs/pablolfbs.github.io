@@ -21,18 +21,19 @@ const criaElementos = m => {
 
     const liEl = document.createElement('li')
     const spanEl = document.createElement('span')
+    spanEl.style.color = corFonte(m, spanEl)
     const abreParentesesEl = document.createElement('span')
     const fechaParentesesEl = document.createElement('span')
 
     const spanText = document.createTextNode(variacao)
     const liText = document.createTextNode(m.nome + ': ' + valor)
     const abreParentesesText = document.createTextNode('(')
+    abreParentesesEl.style.marginLeft = '5px'
     const fechaParentesesText = document.createTextNode(')')
-
-    spanEl.style.color = corFonte(m, spanEl)
 
     abreParentesesEl.appendChild(abreParentesesText)
     fechaParentesesEl.appendChild(fechaParentesesText)
+
     spanEl.appendChild(spanText)
 
     liEl.appendChild(liText)
