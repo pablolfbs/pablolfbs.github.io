@@ -1,5 +1,6 @@
 body {
-    background-color: #3e4444;
+    background-color: rgb(60, 64, 67);
+    color: lightgrey;
 }
 
 .cor-fundo {
@@ -8,4 +9,8 @@ body {
 
 .aDireita {
     text-align: right;
+}
+
+li {
+    margin-bottom: 5px;
 }
