@@ -14,3 +14,7 @@ body {
 li {
     margin-bottom: 5px;
 }
+
+#container-index {
+    margin-top: 15vh;
+}
