@@ -113,4 +113,4 @@ loadValues()
 setInterval(() => {
     document.getElementsByTagName('ul')[0].innerHTML = ''
     loadValues()
-}, 5000);
+}, 30000);
