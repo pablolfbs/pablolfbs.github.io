@@ -65,11 +65,11 @@ const valorFormatadoEmReal = valor => {
 
 const montaObjeto = values => {
     return [{
-        nome: 'Dólar',
+        nome: 'Dólar Americano / Real Brasileiro',
         sigla: 'USDBRL',
         valor: values['USDBRL'].ask
     }, {
-        nome: 'Euro',
+        nome: 'Euro / Real Brasileiro',
         sigla: 'EURBRL',
         valor: values['EURBRL'].ask
     }]
