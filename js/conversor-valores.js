@@ -22,15 +22,15 @@ const loadValues = async() => {
 const alteraValor = moedas => document.getElementById('valor-origem').addEventListener('keyup', () => {
     const selectMoeda = document.getElementById('select-moeda').value
 
-    const valorOrigem = selectMoeda === 'USDBRL' ? document.getElementById('valor-origem').value.replace('US$ ', '').replace(',', '.') : document.getElementById('valor-origem').value.replace(' €', '').replace(',', '.')
+    const valorOrigem = selectMoeda === 'USDBRL' ? document.getElementById('valor-origem').value.replace('US$ ', '').replace('.', '').replace(',', '.') : document.getElementById('valor-origem').value.replace(' €', '').replace('.', '').replace(',', '.')
 
-    document.getElementById('valor-destino').value = valorFormatadoEmReal(selectMoeda === 'USDBRL' ? valorOrigem.replace(',', '') * moedas[0].valor : valorOrigem * moedas[1].valor)
+    document.getElementById('valor-destino').value = valorFormatadoEmReal(selectMoeda === 'USDBRL' ? valorOrigem.replace('.', '').replace(',', '.') * moedas[0].valor : valorOrigem * moedas[1].valor)
 })
 
 const trocaMoeda = moedas => document.getElementById('select-moeda').addEventListener('change', () => {
     const selectMoeda = document.getElementById('select-moeda').value
 
-    const valorOrigem = selectMoeda === 'USDBRL' ? document.getElementById('valor-origem').value.replace(' €', '').replace(',', '.') : document.getElementById('valor-origem').value.replace('US$ ', '').replace(',', '.')
+    const valorOrigem = selectMoeda === 'USDBRL' ? document.getElementById('valor-origem').value.replace(' €', '').replace('.', '').replace(',', '.') : document.getElementById('valor-origem').value.replace('US$ ', '').replace('.', '').replace(',', '.')
 
     document.getElementById('valor-destino').value = valorFormatadoEmReal(selectMoeda === 'USDBRL' ? valorOrigem * moedas[0].valor : valorOrigem * moedas[1].valor)
 
