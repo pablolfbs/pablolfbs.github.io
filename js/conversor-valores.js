@@ -1,52 +1,44 @@
 const loadValues = async() => {
 
-    const responseUsd = await fetch("https://economia.awesomeapi.com.br/USD-BRL/1")
-    const responseEur = await fetch("https://economia.awesomeapi.com.br/EUR-BRL/1")
+    const response = await fetch("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL")
 
-    console.log(responseUsd)
-    console.log(responseEur)
+    const values = await response.json()
 
-    const valueUsd = await responseUsd.json()
-    const valueEur = await responseEur.json()
-
-    console.log(valueUsd)
-    console.log(valueEur)
-
-    const moedasOrigem = [valueUsd[0], valueEur[0]]
+    const moedas = montaObjeto(values)
 
     const selectMoedas = document.getElementById('select-moeda')
 
-    montaSelect(moedasOrigem, selectMoedas)
+    montaSelect(moedas, selectMoedas)
 
     document.getElementById('valor-origem').value = valorFormatadoEmDolar(1)
-    document.getElementById('valor-destino').value = valorFormatadoEmReal(valueUsd[0].ask)
+    document.getElementById('valor-destino').value = valorFormatadoEmReal(moedas[0].valor)
 
-    trocaMoeda(moedasOrigem)
+    trocaMoeda(moedas)
 
-    alteraValor(moedasOrigem)
+    alteraValor(moedas)
 
 }
 
-const alteraValor = moedasOrigem => document.getElementById('valor-origem').addEventListener('keyup', () => {
+const alteraValor = moedas => document.getElementById('valor-origem').addEventListener('keyup', () => {
     const selectMoeda = document.getElementById('select-moeda').value
 
-    const valorOrigem = selectMoeda === 'USD' ? document.getElementById('valor-origem').value.replace('US$ ', '').replace(',', '.') : document.getElementById('valor-origem').value.replace(' €', '').replace(',', '.')
+    const valorOrigem = selectMoeda === 'USDBRL' ? document.getElementById('valor-origem').value.replace('US$ ', '').replace(',', '.') : document.getElementById('valor-origem').value.replace(' €', '').replace(',', '.')
 
-    document.getElementById('valor-destino').value = valorFormatadoEmReal(selectMoeda === 'USD' ? valorOrigem.replace(',', '') * moedasOrigem[0].ask : valorOrigem * moedasOrigem[1].ask)
+    document.getElementById('valor-destino').value = valorFormatadoEmReal(selectMoeda === 'USDBRL' ? valorOrigem.replace(',', '') * moedas[0].valor : valorOrigem * moedas[1].valor)
 })
 
-const trocaMoeda = moedasOrigem => document.getElementById('select-moeda').addEventListener('change', () => {
+const trocaMoeda = moedas => document.getElementById('select-moeda').addEventListener('change', () => {
     const selectMoeda = document.getElementById('select-moeda').value
 
-    const valorOrigem = selectMoeda === 'USD' ? document.getElementById('valor-origem').value.replace(' €', '').replace(',', '.') : document.getElementById('valor-origem').value.replace('US$ ', '').replace(',', '.')
+    const valorOrigem = selectMoeda === 'USDBRL' ? document.getElementById('valor-origem').value.replace(' €', '').replace(',', '.') : document.getElementById('valor-origem').value.replace('US$ ', '').replace(',', '.')
 
-    document.getElementById('valor-destino').value = valorFormatadoEmReal(selectMoeda === 'USD' ? valorOrigem * moedasOrigem[0].ask : valorOrigem * moedasOrigem[1].ask)
+    document.getElementById('valor-destino').value = valorFormatadoEmReal(selectMoeda === 'USDBRL' ? valorOrigem * moedas[0].valor : valorOrigem * moedas[1].valor)
 
-    document.getElementById('valor-origem').value = selectMoeda === 'USD' ? valorFormatadoEmDolar(valorOrigem) : valorFormatadoEmEuro(valorOrigem)
+    document.getElementById('valor-origem').value = selectMoeda === 'USDBRL' ? valorFormatadoEmDolar(valorOrigem) : valorFormatadoEmEuro(valorOrigem)
 })
 
-const montaSelect = (moedasOrigem, selectMoedas) => moedasOrigem.forEach(m => {
-    const option = new Option(m.name, m.code)
+const montaSelect = (moedas, selectMoedas) => moedas.forEach(m => {
+    const option = new Option(m.nome, m.sigla)
     selectMoedas.options[selectMoedas.options.length] = option
 })
 
@@ -71,22 +63,16 @@ const valorFormatadoEmReal = valor => {
     }).format(valor)
 }
 
-// function hoje() {
-//     const hj = new Date()
-//     const dia = hj.getDate()
-//     const mes = hj.getMonth() + 1
-//     const ano = hj.getFullYear()
-//     console.log(mes.length)
-//     return ano + '' + (mes <= 9 ? '0' + mes : mes) + '' + (dia <= 9 ? '0' + dia : dia)
-// }
-
-// function ontem() {
-//     const hj = new Date()
-//     const dia = hj.getDate() - 1
-//     const mes = hj.getMonth() + 1
-//     const ano = hj.getFullYear()
-//     console.log(mes.length)
-//     return String(ano + (mes <= 9 ? '0' + mes : mes) + (dia <= 9 ? '0' + dia : dia))
-// }
+const montaObjeto = values => {
+    return [{
+        nome: 'Dólar',
+        sigla: 'USDBRL',
+        valor: values['USDBRL'].ask
+    }, {
+        nome: 'Euro',
+        sigla: 'EURBRL',
+        valor: values['EURBRL'].ask
+    }]
+}
 
 loadValues()
