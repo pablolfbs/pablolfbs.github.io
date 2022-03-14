@@ -47,22 +47,26 @@
     <form class="container">
         <div class="row justify-content-center">
             <div class="col-sm-12 col-md-8 col-lg-6 mb-3">
-                <input type="text" class="form-control investimento-inicial cor-fundo" aria-describedby="" placeholder="Investimento Inicial (R$)">
+                <small>Investimento Inicial</small>
+                <input inputmode="numeric" class="form-control investimento-inicial cor-fundo" aria-describedby="investimento-inicial" aria-label="Investimento Inicial" placeholder="Investimento Inicial (R$)" value="0,00">
             </div>
         </div>
         <div class="row justify-content-center">
             <div class="col-sm-12 col-md-8 col-lg-6 mb-3">
-                <input type="text" class="form-control investimento-mensal cor-fundo" aria-describedby="" placeholder="Investimento Mensal (R$)">
+                <small>Investimento Mensal</small>
+                <input inputmode="numeric" class="form-control investimento-mensal cor-fundo" aria-describedby="investimento-mensal" aria-label="Investimento Mensal" placeholder="Investimento Mensal (R$)" value="0,00">
             </div>
         </div>
         <div class="row justify-content-center">
             <div class="col-sm-12 col-md-8 col-lg-6 mb-3">
-                <input type="text" class="form-control tx cor-fundo" aria-describedby="" placeholder="Taxa Juros / Mês (%)">
+                <small>Taxa de Juros</small>
+                <input inputmode="numeric" class="form-control tx cor-fundo" aria-describedby="tx" aria-label="Taxa Juros" placeholder="Taxa Juros / Mês (%)" value="1,00">
             </div>
         </div>
         <div class="row justify-content-center">
             <div class="col-sm-12 col-md-8 col-lg-6 mb-3">
-                <input type="text" class="form-control periodo cor-fundo" aria-describedby="" placeholder="Quantidade Meses">
+                <small>Quantidade de meses</small>
+                <input type="text" class="form-control periodo cor-fundo" aria-describedby="" placeholder="" value="0">
             </div>
         </div>
 
@@ -94,8 +98,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-grid gap-2 mb-3">
-                    <button type="button" class="btn btn-secondary" aria-label="">Calcular</button>
+                <div class="d-grid gap-2 mt-5 mb-3">
+                    <button type="button" id="calcular" class="btn btn-secondary" aria-label="">Calcular</button>
                 </div>
                 <div class="aDireita">
                     <button type="button" id="limpar" class="btn btn-link btn-sm text-light" aria-label="">Limpar Campos</button>
@@ -104,6 +108,7 @@
         </div>
     </form>
 
+    <script src="js/simple-mask-money.js"></script>
     <script src="js/calculadora-financeira.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>

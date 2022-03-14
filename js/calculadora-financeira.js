@@ -1,22 +1,24 @@
 const itensInput = document.querySelectorAll("input")
 const itensHidden = document.querySelectorAll("div[hidden]")
 
+let investimentoInicial = SimpleMaskMoney.setMask('.investimento-inicial');
+let investimentoMensal = SimpleMaskMoney.setMask('.investimento-mensal');
+let tx = SimpleMaskMoney.setMask('.tx');
+
 const calculoInvestimento = () => {
     // M = C (1+i)^t
 
-    const investimentoMensal =
-        parseFloat(document.querySelector(".investimento-mensal").value) > 0 ? parseFloat(document.querySelector(".investimento-mensal").value) : 0
-    const investimentoInicial =
-        parseFloat(document.querySelector(".investimento-inicial").value) > 0 ? parseFloat(document.querySelector(".investimento-inicial").value) : 0
-    const periodo = document.querySelector(".periodo").value < 720 ? parseInt(document.querySelector(".periodo").value) : alert('Período não pode ser maior que 720 meses')
-    const tx = parseFloat(document.querySelector(".tx").value / 100)
+    investimentoMensal = valorFormatado(document.querySelector(".investimento-mensal").value)
+    investimentoInicial = valorFormatado(document.querySelector(".investimento-inicial").value)
+    const periodo = document.querySelector(".periodo").value <= 720 ? valorFormatado(document.querySelector(".periodo").value) : alert('Período não pode ser maior que 720 meses')
+    tx = valorFormatado(document.querySelector(".tx").value) / 100
     let montante = investimentoInicial * Math.pow(1 + tx, periodo)
 
     for (let i = 0; i < periodo; i++) {
         montante += investimentoMensal * Math.pow(1 + tx, i)
     }
 
-    const valorInvestido = investimentoMensal * periodo + investimentoInicial
+    const valorInvestido = parseFloat(investimentoMensal) * parseFloat(periodo) + parseFloat(investimentoInicial)
     const rendimento = montante - valorInvestido
 
     if (montante) {
@@ -28,13 +30,17 @@ const calculoInvestimento = () => {
     }
 }
 
-document.querySelector("button").onclick = calculoInvestimento
+document.querySelector("#calcular").onclick = calculoInvestimento
+
+const valorFormatado = valor => {
+    return valor.substring(0, valor.length - 3).replaceAll('.', '') + valor.substring(valor.length - 3, valor.length).replace(',', '.');
+}
 
 const moedaFormatada = valor => parseFloat(valor).toLocaleString("pt-br", { style: "currency", currency: "BRL" })
 
-for (const item of itensInput) {
-    item.addEventListener("input", e => e.currentTarget.value = e.currentTarget.value.replace(/[^0-9.]/g, "").replace(/(\..*?)\..*/g, "$1"))
-}
+// for (const item of itensInput) {
+//     item.addEventListener("input", e => e.currentTarget.value = e.currentTarget.value.replace(/[^0-9.]/g, "").replace(/(\..*?)\..*/g, "$1"))
+// }
 
 document.querySelector("#limpar").addEventListener("click", () => {
     for (const item of itensInput) item.value = ""
