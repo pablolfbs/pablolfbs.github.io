@@ -18,3 +18,12 @@ li {
 #container-index {
     margin-top: 15vh;
 }
+
+nav {
+    height: 70px;
+}
+
+nav img {
+    margin-left: 20px;
+    height: 40px;
+}

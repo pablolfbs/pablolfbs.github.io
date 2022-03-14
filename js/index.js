@@ -6,3 +6,11 @@ document.querySelector('#botao-conversor').addEventListener('click', () => windo
 
 // fetch('https://api.github.com/search/repositories?q=javascript')
 //     .then(response => console.log('Response: ', response.json()))
+
+// fetch("./header.html")
+//     .then(response => {
+//         return response.text()
+//     })
+//     .then(data => {
+//         document.querySelector("header").innerHTML = data;
+//     });

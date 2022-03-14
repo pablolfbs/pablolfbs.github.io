@@ -18,7 +18,7 @@ const criaElementos = m => {
     const variacao = m.variacao + ' $'
     const porcentagem = m.porcentagem + '%'
 
-    const position = document.getElementsByTagName('ul')[0]
+    const position = document.getElementById('ul-moedas')
 
     const liEl = document.createElement('li')
     const spanVariacaoEl = document.createElement('span')
@@ -111,6 +111,6 @@ const valorFormatadoEmDolar = valor => {
 
 loadValues()
 setInterval(() => {
-    document.getElementsByTagName('ul')[0].innerHTML = ''
+    document.getElementById('ul-moedas').innerHTML = ''
     loadValues()
-}, 30000);
+}, 10000);

@@ -1,3 +1,6 @@
+let valorOrigem = SimpleMaskMoney.setMask('#valor-origem');
+let valorDestino = SimpleMaskMoney.setMask('#valor-destino');
+
 const loadValues = async() => {
 
     const response = await fetch("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL")
@@ -10,7 +13,6 @@ const loadValues = async() => {
 
     montaSelect(moedas, selectMoedas)
 
-    document.getElementById('valor-origem').value = valorFormatadoEmDolar(1)
     document.getElementById('valor-destino').value = valorFormatadoEmReal(moedas[0].valor)
 
     trocaMoeda(moedas)
@@ -22,25 +24,30 @@ const loadValues = async() => {
 const alteraValor = moedas => document.getElementById('valor-origem').addEventListener('keyup', () => {
     const selectMoeda = document.getElementById('select-moeda').value
 
-    const valorOrigem = selectMoeda === 'USDBRL' ? document.getElementById('valor-origem').value.replace('US$ ', '').replace('.', '').replace(',', '.') : document.getElementById('valor-origem').value.replace(' €', '').replace('.', '').replace(',', '.')
+    const valor = valorFormatado();
 
-    document.getElementById('valor-destino').value = valorFormatadoEmReal(selectMoeda === 'USDBRL' ? valorOrigem.replace('.', '').replace(',', '.') * moedas[0].valor : valorOrigem * moedas[1].valor)
+    document.getElementById('valor-destino').value = valorFormatadoEmReal(selectMoeda === 'USDBRL' ? valor * moedas[0].valor : valor * moedas[1].valor)
 })
 
 const trocaMoeda = moedas => document.getElementById('select-moeda').addEventListener('change', () => {
     const selectMoeda = document.getElementById('select-moeda').value
 
-    const valorOrigem = selectMoeda === 'USDBRL' ? document.getElementById('valor-origem').value.replace(' €', '').replace('.', '').replace(',', '.') : document.getElementById('valor-origem').value.replace('US$ ', '').replace('.', '').replace(',', '.')
+    const valor = valorFormatado();
 
-    document.getElementById('valor-destino').value = valorFormatadoEmReal(selectMoeda === 'USDBRL' ? valorOrigem * moedas[0].valor : valorOrigem * moedas[1].valor)
+    document.getElementById('valor-destino').value = valorFormatadoEmReal(selectMoeda === 'USDBRL' ? valor * moedas[0].valor : valor * moedas[1].valor)
 
-    document.getElementById('valor-origem').value = selectMoeda === 'USDBRL' ? valorFormatadoEmDolar(valorOrigem) : valorFormatadoEmEuro(valorOrigem)
+    document.getElementById('valor-origem').value = valor
 })
 
 const montaSelect = (moedas, selectMoedas) => moedas.forEach(m => {
     const option = new Option(m.nome, m.sigla)
     selectMoedas.options[selectMoedas.options.length] = option
 })
+
+const valorFormatado = () => {
+    valorOrigem = document.getElementById('valor-origem').value;
+    return valorOrigem.substring(0, valorOrigem.length - 3).replaceAll('.', '') + valorOrigem.substring(valorOrigem.length - 3, valorOrigem.length).replace(',', '.');
+}
 
 const valorFormatadoEmDolar = valor => {
     return new Intl.NumberFormat('pt-BR', {
