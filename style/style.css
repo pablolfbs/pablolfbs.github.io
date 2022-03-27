@@ -31,3 +31,30 @@ nav img {
 nav button {
     margin-right: 20px;
 }
+
+.col-3 {
+    border: 1px solid grey;
+    height: 120px;
+    width: 80px;
+    color: grey;
+    font-size: 75px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#calculadora {
+    width: 325px;
+}
+
+.col-3:hover {
+    color: white;
+}
+
+#resultado {
+    height: 60px;
+    text-align: right;
+}
+
+#span-calculo {
+    text-align: right;
+}
