@@ -43,8 +43,17 @@ const moedaFormatada = valor => parseFloat(valor).toLocaleString("pt-br", { styl
 // }
 
 document.querySelector("#limpar").addEventListener("click", () => {
-    for (const item of itensInput) item.value = ""
+    // for (const item of itensInput) item.value = ""
+    document.querySelector(".investimento-inicial").value = 0
+    investimentoInicial = SimpleMaskMoney.setMask('.investimento-inicial');
+    document.querySelector(".investimento-mensal").value = 0
+    investimentoInicial = SimpleMaskMoney.setMask('.investimento-mensal');
+    document.querySelector(".tx").value = 0
+    tx = SimpleMaskMoney.setMask('.tx');
+    document.querySelector(".periodo").value = 0
+
     document.querySelector('#container-resultado').setAttribute('hidden', true)
+
 })
 
 document.addEventListener("keyup", e => { if (e.key === 'Enter') calculoInvestimento() })
