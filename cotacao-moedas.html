@@ -17,41 +17,27 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/index.html">
-                <img src="https://img.icons8.com/external-vitaliy-gorbachev-lineal-color-vitaly-gorbachev/60/000000/external-money-sales-vitaliy-gorbachev-lineal-color-vitaly-gorbachev.png" alt="" />
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/index.html">Home</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/calculadora-financeira.html">Calculadora Financeira</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/cotacao-moedas.html"><strong class="sr-only">Cotação de Moedas </strong></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/conversor-valores.html">Conversor de Valores</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        <div id="header-placeholder"></div>
     </header>
-    <h1 class="text-center mt-4 mb-5">COTAÇÃO DE MOEDAS</h1>
-    <div class="container">
-        <div class="row">
-            <h4>
-                <ul id="ul-moedas"></ul>
-            </h4>
-        </div>
-    </div>
 
+    <main>
+        <h1 class="text-center mt-4 mb-5">COTAÇÃO DE MOEDAS</h1>
+        <div class="container">
+            <div class="row">
+                <h4>
+                    <ul id="ul-moedas"></ul>
+                </h4>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="text-end mb-3">
+            <button class="btn btn-secondary toggle-button" onclick="toggleDarkMode()">Alternar Dark Mode</button>
+        </div>
+    </footer>
+
+    <script src="js/header.js"></script>
     <script src="js/cotacao-moedas.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>

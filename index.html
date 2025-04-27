@@ -17,40 +17,28 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/index.html">
-                <img src="https://img.icons8.com/cotton/64/000000/home--v1.png" alt="" />
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/index.html"><strong class="sr-only">Home</strong></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/calculadora-financeira.html">Calculadora Financeira</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/cotacao-moedas.html">Cotação de Moedas</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/conversor-valores.html">Conversor de Valores</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        <div id="header-placeholder"></div>
     </header>
-    <div class="container" id="container-index">
-        <div class="row d-grid gap-2 col-6 mx-auto mt-5">
-            <button type="button" id="botao-calculadora-financeira" class="btn btn-lg btn-secondary">Calculadora Financeira</button>
-            <button type="button" id="botao-cotacao" class="btn btn-lg btn-secondary">Cotação Moedas</button>
-            <button type="button" id="botao-conversor" class="btn btn-lg btn-secondary">Conversão de Valores</button>
-        </div>
-    </div>
 
+    <main>
+        <div class="container" id="container-index">
+            <div class="row d-grid gap-2 col-6 mx-auto mt-5">
+                <button type="button" id="botao-calculadora-financeira" class="btn btn-lg btn-secondary">Calculadora
+                    Financeira</button>
+                <button type="button" id="botao-cotacao" class="btn btn-lg btn-secondary">Cotação Moedas</button>
+                <button type="button" id="botao-conversor" class="btn btn-lg btn-secondary">Conversão de
+                    Valores</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="text-end mb-3">
+            <button class="btn btn-secondary toggle-button" onclick="toggleDarkMode()">Alternar Dark Mode</button>
+        </div>
+    </footer>
+
+    <script src="js/header.js"></script>
     <script src="js/index.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>

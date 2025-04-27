@@ -1,59 +1,99 @@
-const itensInput = document.querySelectorAll("input")
-const itensHidden = document.querySelectorAll("div[hidden]")
+const itensInput = document.querySelectorAll("input");
+const itensHidden = document.querySelectorAll("div[hidden]");
 
-let investimentoInicial = SimpleMaskMoney.setMask('.investimento-inicial');
-let investimentoMensal = SimpleMaskMoney.setMask('.investimento-mensal');
-let tx = SimpleMaskMoney.setMask('.tx');
+const inputInvestimentoInicial = document.querySelector(".investimento-inicial");
+const inputInvestimentoMensal = document.querySelector(".investimento-mensal");
+const inputTx = document.querySelector(".tx");
+const inputPeriodo = document.querySelector(".periodo");
 
+// Máscara manual nos inputs
+const aplicarMascaraMoeda = (inputElement) => {
+    inputElement.addEventListener('input', () => {
+        let valor = inputElement.value.replace(/\D/g, '');
+        if (!valor) valor = '0';
+        let valorNumerico = parseFloat(valor) / 100;
+        inputElement.value = valorNumerico.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    });
+};
+
+// Aplica a máscara nos campos
+aplicarMascaraMoeda(inputInvestimentoInicial);
+aplicarMascaraMoeda(inputInvestimentoMensal);
+aplicarMascaraMoeda(inputTx);
+
+// Funções de formatação
+const valorFormatado = (inputElement) => {
+    const valor = inputElement.value.replace(/\D/g, '');
+    return parseFloat(valor) / 100;
+};
+
+const moedaFormatada = (valor) => parseFloat(valor).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+
+// Função de cálculo
 const calculoInvestimento = () => {
     // M = C (1+i)^t
+    const investimentoMensal = valorFormatado(inputInvestimentoMensal);
+    const investimentoInicial = valorFormatado(inputInvestimentoInicial);
+    const taxa = valorFormatado(inputTx) / 100;
+    const periodo = parseInt(inputPeriodo.value);
 
-    investimentoMensal = valorFormatado(document.querySelector(".investimento-mensal").value)
-    investimentoInicial = valorFormatado(document.querySelector(".investimento-inicial").value)
-    const periodo = document.querySelector(".periodo").value <= 720 ? valorFormatado(document.querySelector(".periodo").value) : alert('Período não pode ser maior que 720 meses')
-    tx = valorFormatado(document.querySelector(".tx").value) / 100
-    let montante = investimentoInicial * Math.pow(1 + tx, periodo)
+    if (isNaN(periodo) || periodo <= 0) {
+        alert("Período inválido!");
+        return;
+    }
+    if (periodo > 720) {
+        alert("Período não pode ser maior que 720 meses!");
+        return;
+    }
+
+    let montante = investimentoInicial * Math.pow(1 + taxa, periodo);
 
     for (let i = 0; i < periodo; i++) {
-        montante += investimentoMensal * Math.pow(1 + tx, i)
+        montante += investimentoMensal * Math.pow(1 + taxa, i);
     }
 
-    const valorInvestido = parseFloat(investimentoMensal) * parseFloat(periodo) + parseFloat(investimentoInicial)
-    const rendimento = montante - valorInvestido
+    const valorInvestido = (investimentoMensal * periodo) + investimentoInicial;
+    const rendimento = montante - valorInvestido;
 
-    if (montante) {
-        document.querySelector("#valor-investido").innerHTML = moedaFormatada(valorInvestido)
-        document.querySelector("#rendimento").innerHTML = moedaFormatada(rendimento)
-        document.querySelector("#montante").innerHTML = moedaFormatada(montante)
+    if (!isNaN(montante)) {
+        document.querySelector("#valor-investido").innerHTML = moedaFormatada(valorInvestido);
+        document.querySelector("#rendimento").innerHTML = moedaFormatada(rendimento);
+        document.querySelector("#montante").innerHTML = moedaFormatada(montante);
 
-        for (const item of itensHidden) item.removeAttribute("hidden")
+        for (const item of itensHidden) item.removeAttribute("hidden");
     }
+};
+
+// Função de limpar os campos
+const limparCampos = () => {
+    inputInvestimentoInicial.value = '0,00';
+    inputInvestimentoMensal.value = '0,00';
+    inputTx.value = '0,00';
+    inputPeriodo.value = '';
+
+    document.querySelector('#container-resultado').setAttribute('hidden', true);
+};
+
+// Event Listeners
+document.querySelector("#calcular").onclick = calculoInvestimento;
+document.querySelector("#limpar").onclick = limparCampos;
+document.addEventListener("keyup", (e) => { if (e.key === 'Enter') calculoInvestimento(); });
+
+// Dark Mode
+function toggleDarkMode() {
+    const body = document.body;
+    body.classList.toggle('dark-mode');
+    body.classList.toggle('light-mode');
+
+    localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
 }
 
-document.querySelector("#calcular").onclick = calculoInvestimento
-
-const valorFormatado = valor => {
-    return valor.substring(0, valor.length - 3).replaceAll('.', '') + valor.substring(valor.length - 3, valor.length).replace(',', '.');
-}
-
-const moedaFormatada = valor => parseFloat(valor).toLocaleString("pt-br", { style: "currency", currency: "BRL" })
-
-// for (const item of itensInput) {
-//     item.addEventListener("input", e => e.currentTarget.value = e.currentTarget.value.replace(/[^0-9.]/g, "").replace(/(\..*?)\..*/g, "$1"))
-// }
-
-document.querySelector("#limpar").addEventListener("click", () => {
-    // for (const item of itensInput) item.value = ""
-    document.querySelector(".investimento-inicial").value = 0
-    investimentoInicial = SimpleMaskMoney.setMask('.investimento-inicial');
-    document.querySelector(".investimento-mensal").value = 0
-    investimentoInicial = SimpleMaskMoney.setMask('.investimento-mensal');
-    document.querySelector(".tx").value = 0
-    tx = SimpleMaskMoney.setMask('.tx');
-    document.querySelector(".periodo").value = 0
-
-    document.querySelector('#container-resultado').setAttribute('hidden', true)
-
-})
-
-document.addEventListener("keyup", e => { if (e.key === 'Enter') calculoInvestimento() })
+// Quando a página carrega
+window.onload = function() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.add('light-mode');
+    }
+};

@@ -17,52 +17,44 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/index.html">
-                <img src="https://img.icons8.com/color/48/000000/banknotes.png" alt="" />
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/index.html">Home</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/calculadora-financeira.html">Calculadora Financeira</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/cotacao-moedas.html">Cotação de Moedas</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/conversor-valores.html"><strong class="sr-only">Conversor de Valores</strong></span></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        <div id="header-placeholder"></div>
     </header>
-    <h1 class="text-center mt-4 mb-5">COTAÇÃO DE MOEDAS</h1>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-sm-12 col-md-6 col-lg-3 mb-3">
-                <select class="form-select" name="moeda" title="Moeda" id="select-moeda"></select>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-sm-12 col-md-6 col-lg-3 mb-3">
-                <input inputmode="numeric" class="form-control" id="valor-origem" placeholder="Valor Origem" aria-label="Valor Origem" aria-describedby="valor-origem" value="1,00">
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-sm-12 col-md-6 col-lg-3 mb-5">
-                <input inputmode="numeric" class="form-control" id="valor-destino" placeholder="Valor Destino" aria-label="Valor Destino" aria-describedby="valor-destino" value="0,00" disabled>
-            </div>
-        </div>
-    </div>
 
-    <script src="js/simple-mask-money.js"></script>
+    <main>
+        <div class="container mt-5">
+            <h1 class="text-center mb-4">Conversor de Moedas</h1>
+        
+            <div class="row mb-4">
+                <div class="col">
+                    <select id="select-moeda" class="form-select"></select>
+                </div>
+            </div>
+        
+            <div class="row mb-3">
+                <div class="col">
+                    <input id="valor-origem" class="form-control" inputmode="numeric" placeholder="Valor Origem" value="1,00">
+                </div>
+            </div>
+        
+            <div class="row mb-4">
+                <div class="col">
+                    <input id="valor-destino" class="form-control" inputmode="numeric" placeholder="Valor Destino" value="0,00">
+                </div>
+            </div>
+        
+            <h2 class="text-center mb-3">Cotações Atualizadas</h2>
+            <ul id="ul-moedas" class="list-group"></ul>
+        
+        </div>
+    </main>
+
+    <footer>
+        <div class="text-end mb-3">
+            <button class="btn btn-secondary toggle-button" onclick="toggleDarkMode()">Alternar Dark Mode</button>
+        </div>
+    </footer>
+
+    <script src="js/header.js"></script>
     <script src="js/conversor-valores.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>

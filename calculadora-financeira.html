@@ -17,98 +17,83 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/index.html">
-                <img src="https://img.icons8.com/color/48/000000/apple-calculator.png" alt="" />
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/index.html">Home</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/calculadora-financeira.html"><strong class="sr-only">Calculadora Financeira</strong></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/cotacao-moedas.html">Cotação de Moedas</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/conversor-valores.html">Conversor de Valores</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        <div id="header-placeholder"></div>
     </header>
-    <h1 class="text-center mt-4 mb-5 text-light">CALCULADORA FINANCEIRA</h1>
-    <form class="container">
-        <div class="row justify-content-center">
-            <div class="col-sm-12 col-md-8 col-lg-6 mb-3">
-                <small>Investimento Inicial (R$)</small>
-                <input inputmode="numeric" class="form-control investimento-inicial cor-fundo" aria-describedby="investimento-inicial" aria-label="Investimento Inicial" value="0,00">
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-sm-12 col-md-8 col-lg-6 mb-3">
-                <small>Investimento Mensal (R$)</small>
-                <input inputmode="numeric" class="form-control investimento-mensal cor-fundo" aria-describedby="investimento-mensal" aria-label="Investimento Mensal" value="0,00">
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-sm-12 col-md-8 col-lg-6 mb-3">
-                <small>Taxa de Juros / Mês (%)</small>
-                <input inputmode="numeric" class="form-control tx cor-fundo" aria-describedby="tx" aria-label="Taxa Juros" value="0">
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-sm-12 col-md-8 col-lg-6 mb-3">
-                <small>Quantidade de meses</small>
-                <input type="number" class="form-control periodo cor-fundo" aria-describedby="" placeholder="" value="0">
-            </div>
-        </div>
 
-        <div class="row justify-content-center">
-            <div class="col-sm-12 col-md-8 col-lg-6 mb-3">
-                <div class="container" id="container-resultado" hidden>
-                    <div class="row mb-3">
-                        <div class="col-6">
-                            <label class="text-light">Valor Investido (R$)</label>
-                        </div>
-                        <div class="col-6 text-end">
-                            <span class="text-light" id="valor-investido"></span>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-6">
-                            <label class="text-light">Rendimento (R$)</label>
-                        </div>
-                        <div class="col-6 text-end">
-                            <span class="text-light" id="rendimento"></span>
-                        </div>
-                    </div>
-                    <div class="row mb-3 ">
-                        <div class="col-6">
-                            <label class="text-light">Valor Total (R$)</label>
-                        </div>
-                        <div class="col-6 text-end">
-                            <span class="text-light" id="montante"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="d-grid gap-2 mt-5 mb-3">
-                    <button type="button" id="calcular" class="btn btn-secondary" aria-label="">Calcular</button>
-                </div>
-                <div class="aDireita">
-                    <button type="button" id="limpar" class="btn btn-link btn-sm text-light" aria-label="">Limpar Campos</button>
+    <main>
+        <h1 class="text-center mt-4 mb-5 text-light">CALCULADORA FINANCEIRA</h1>
+        <form class="container">
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-8 col-lg-6 mb-3">
+                    <small>Investimento Inicial (R$)</small>
+                    <input inputmode="numeric" class="form-control investimento-inicial cor-fundo" aria-describedby="investimento-inicial" aria-label="Investimento Inicial" value="0,00">
                 </div>
             </div>
-        </div>
-    </form>
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-8 col-lg-6 mb-3">
+                    <small>Investimento Mensal (R$)</small>
+                    <input inputmode="numeric" class="form-control investimento-mensal cor-fundo" aria-describedby="investimento-mensal" aria-label="Investimento Mensal" value="0,00">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-8 col-lg-6 mb-3">
+                    <small>Taxa de Juros / Mês (%)</small>
+                    <input inputmode="numeric" class="form-control tx cor-fundo" aria-describedby="tx" aria-label="Taxa Juros" value="0">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-8 col-lg-6 mb-3">
+                    <small>Quantidade de meses</small>
+                    <input type="number" class="form-control periodo cor-fundo" aria-describedby="" placeholder="" value="0">
+                </div>
+            </div>
 
-    <script src="js/simple-mask-money.js"></script>
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-8 col-lg-6 mb-3">
+                    <div class="container" id="container-resultado" hidden>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <label>Valor Investido (R$)</label>
+                            </div>
+                            <div class="col-6 text-end">
+                                <span id="valor-investido"></span>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <label>Rendimento (R$)</label>
+                            </div>
+                            <div class="col-6 text-end">
+                                <span id="rendimento"></span>
+                            </div>
+                        </div>
+                        <div class="row mb-3 ">
+                            <div class="col-6">
+                                <label>Valor Total (R$)</label>
+                            </div>
+                            <div class="col-6 text-end">
+                                <span id="montante"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2 mt-5 mb-3">
+                        <button type="button" id="calcular" class="btn btn-secondary" aria-label="">Calcular</button>
+                    </div>
+                    <div class="aDireita">
+                        <button type="button" id="limpar" class="btn btn-link btn-sm" aria-label="">Limpar Campos</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </main>
+
+    <footer>
+        <div class="text-end mb-3">
+            <button class="btn btn-secondary toggle-button" onclick="toggleDarkMode()">Alternar Dark Mode</button>
+        </div>
+    </footer>
+
+    <script src="js/header.js"></script>
     <script src="js/calculadora-financeira.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>

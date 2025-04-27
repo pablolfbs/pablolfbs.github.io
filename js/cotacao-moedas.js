@@ -13,44 +13,63 @@ const montaListaMoedas = moedas => {
     })
 }
 
+// const criaElementos = m => {
+//     console.log('M', m)
+//     const valor = m.sigla == 'BTCUSD' ? valorFormatadoEmDolar(m.valor) : valorFormatadoEmReal(m.valor)
+//     const variacao = m.variacao + ' $'
+//     const porcentagem = m.porcentagem + '%'
+
+//     const position = document.getElementById('ul-moedas')
+
+//     const liEl = document.createElement('li')
+//     const spanVariacaoEl = document.createElement('span')
+//     spanVariacaoEl.style.color = corFonte(m, spanVariacaoEl)
+//     const spanPorcentagemEl = document.createElement('span')
+//     spanPorcentagemEl.style.color = corFonte(m, spanPorcentagemEl)
+//     const abreParentesesEl = document.createElement('span')
+//     const fechaParentesesEl = document.createElement('span')
+
+//     const spanVariacaoText = document.createTextNode(variacao)
+//     const spanPorcentagemText = document.createTextNode(porcentagem)
+//     spanPorcentagemEl.style.marginLeft = '5px'
+//     const liText = document.createTextNode(m.sigla == 'BTCBRL' ? m.nome + ' ' + m.sigla.substring(3) +': ' + valor : m.nome + ': ' + valor)
+//     const abreParentesesText = document.createTextNode('(')
+//     abreParentesesEl.style.marginLeft = '5px'
+//     const fechaParentesesText = document.createTextNode(')')
+
+//     abreParentesesEl.appendChild(abreParentesesText)
+//     fechaParentesesEl.appendChild(fechaParentesesText)
+//     spanVariacaoEl.appendChild(spanVariacaoText)
+//     spanPorcentagemEl.appendChild(spanPorcentagemText)
+
+//     liEl.appendChild(liText)
+//     liEl.appendChild(abreParentesesEl)
+//     liEl.appendChild(spanVariacaoEl)
+//     liEl.appendChild(fechaParentesesEl)
+//     liEl.appendChild(spanPorcentagemEl)
+
+//     position.appendChild(liEl)
+// }
+
 const criaElementos = m => {
-    const valor = m.sigla == 'BTCUSD' ? valorFormatadoEmDolar(m.valor) : valorFormatadoEmReal(m.valor)
-    const variacao = m.variacao + ' $'
-    const porcentagem = m.porcentagem + '%'
+    console.log('M', m);
 
-    const position = document.getElementById('ul-moedas')
+    const valor = m.sigla === 'BTCUSD' ? valorFormatadoEmDolar(m.valor) : valorFormatadoEmReal(m.valor);
+    const variacao = `${m.variacao} $`;
+    const porcentagem = `${m.porcentagem}%`;
 
-    const liEl = document.createElement('li')
-    const spanVariacaoEl = document.createElement('span')
-    spanVariacaoEl.style.color = corFonte(m, spanVariacaoEl)
-    const spanPorcentagemEl = document.createElement('span')
-    spanPorcentagemEl.style.color = corFonte(m, spanPorcentagemEl)
-    const abreParentesesEl = document.createElement('span')
-    const fechaParentesesEl = document.createElement('span')
+    const liEl = document.createElement('li');
 
-    const spanVariacaoText = document.createTextNode(variacao)
-    const spanPorcentagemText = document.createTextNode(porcentagem)
-    spanPorcentagemEl.style.marginLeft = '5px'
-    const liText = document.createTextNode(m.nome + ': ' + valor)
-    const abreParentesesText = document.createTextNode('(')
-    abreParentesesEl.style.marginLeft = '5px'
-    const fechaParentesesText = document.createTextNode(')')
+    liEl.innerHTML = `
+        ${m.sigla === 'BTCBRL' ? `${m.nome} ${m.sigla.substring(3)}: ${valor}` : `${m.nome}: ${valor}`}
+        <span style="margin-left: 5px;">(</span>
+        <span style="color: ${corFonte(m)};">${variacao}</span>
+        <span>)</span>
+        <span style="color: ${corFonte(m)}; margin-left: 5px;">${porcentagem}</span>
+    `;
 
-    abreParentesesEl.appendChild(abreParentesesText)
-    fechaParentesesEl.appendChild(fechaParentesesText)
-    spanVariacaoEl.appendChild(spanVariacaoText)
-    spanPorcentagemEl.appendChild(spanPorcentagemText)
-
-    spanVariacaoEl.appendChild(spanVariacaoText)
-
-    liEl.appendChild(liText)
-    liEl.appendChild(abreParentesesEl)
-    liEl.appendChild(spanVariacaoEl)
-    liEl.appendChild(fechaParentesesEl)
-    liEl.appendChild(spanPorcentagemEl)
-
-    position.appendChild(liEl)
-}
+    document.getElementById('ul-moedas').appendChild(liEl);
+};
 
 const corFonte = (m, spanEl) => {
     if (m.variacao > 0)
@@ -114,3 +133,26 @@ setInterval(() => {
     document.getElementById('ul-moedas').innerHTML = ''
     loadValues()
 }, 10000);
+
+function toggleDarkMode() {
+    const body = document.body;
+    body.classList.toggle('dark-mode');
+    body.classList.toggle('light-mode');
+
+    // Salvar a escolha
+    if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('theme', 'dark');
+    } else {
+        localStorage.setItem('theme', 'light');
+    }
+}
+
+// Quando a página carrega, aplicar o tema salvo
+window.onload = function() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.add('light-mode');
+    }
+};
