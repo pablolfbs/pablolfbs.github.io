@@ -84,7 +84,6 @@ const montaListaMoedas = (moedas) => {
     lista.innerHTML = '';
     moedas.forEach(m => {
         const li = document.createElement('li');
-        li.className = 'list-group-item';
         li.textContent = `${m.nome}: ${valorFormatadoEmReal(m.valor)}`;
         lista.appendChild(li);
     });

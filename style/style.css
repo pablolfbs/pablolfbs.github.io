@@ -102,21 +102,6 @@ body.dark-mode {
     border-color: #333;
 }
 
-.list-group-item {
-    background: transparent;
-    border: none;
-}
-
-.list-group-item span {
-    font-weight: bold;
-}
-
-/* Quando dark mode, mudar só a cor do texto da lista */
-.dark-mode .list-group,
-.dark-mode .list-group-item {
-    color: white;
-}
-
 .nav-link.active {
     font-weight: bold;
     color: #007bff; /* azul bootstrap */
