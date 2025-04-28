@@ -116,3 +116,9 @@ body.dark-mode {
 .dark-mode .list-group-item {
     color: white;
 }
+
+.nav-link.active {
+    font-weight: bold;
+    color: #007bff; /* azul bootstrap */
+    border-bottom: 2px solid #007bff;
+}
